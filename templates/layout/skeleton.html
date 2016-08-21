@@ -1,0 +1,46 @@
+{% import "macros/services.jinja2" as services with context %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description"
+              content="{% block meta_description %}{% endblock %}">
+
+        <title>
+            {% block title %}
+                {% if config['title'] %}{{ config['title'] }} {%endif%}Saints Be Told Ltd.
+            {% endblock %}
+        </title>
+
+        {% if config['ANALYTICS_GOOGLE'] %}
+            {{ services.google_analytics(config['ANALYTICS_GOOGLE'])|safe }}
+        {% endif %}
+        {% if config['ANALYTICS_HEAP'] %}
+            {{ services.heap_analytics(config['ANALYTICS_HEAP'])|safe }}
+        {% endif %}
+
+        <link rel="stylesheet" href="/assets/css/normalize.css">
+    </head>
+    <body>
+        {% block header %}{% endblock %}
+
+        {% block body %}{% endblock %}
+        
+        {% block footer %}
+            <ul class="footer-links">
+                <li><a href="{{ url_for('page.terms') }}">Terms of Service</a></li>
+                <li><a href="{{ url_for('page.privacy') }}">Privacy Policy</a></li> 
+                <li><a href="/sitemap">Sitemap</a></li>
+
+                {% if config['GITHUB_URL'] %}
+                    Made with <a href="{{ config['GITHUB_URL']|safe }}">&hearts;</a> in <a href="http://www.cityofallegan.org/">Allegan</a>, <a href="http://www.michigan.org/">Michigan</a>.
+                {% endif %}
+            </ul>
+
+            <a href="https://heapanalytics.com/?utm_source=badge"><img style="width:108px;height:41px" src="//heapanalytics.com/img/badgeLight.png" alt="Heap | Mobile and Web Analytics" /></a>
+        {% endblock %}
+    </body>
+</html>
