@@ -1,0 +1,22 @@
+{% set love %}
+    {% if config['GITHUB_URL'] %}
+        <a href="{{ config['GITHUB_URL']|safe }}" target="_blank">&hearts;</a>
+    {% else %}
+        &hearts;
+    {% endif %}
+{% endset %}
+
+<footer class="app-footer">
+    <ul class="footer-links right">
+        Made with {{ love|safe }} in <a href="http://www.cityofallegan.org/" target="_blank">Allegan</a>, <a href="http://www.michigan.org/" target="_blank">Michigan</a>.
+    </ul>
+    
+    <ul class="footer-links">
+        <li>&copy; 2016 Saints Be Told Ltd.</li>
+        <li><a href="{{ url_for('page.terms') }}">Terms</a></li>
+        <li><a href="{{ url_for('page.privacy') }}">Privacy</a></li> 
+        <li><a href="{{ url_for('page.sitemap') }}">Sitemap</a></li>
+    </ul>
+</footer>
+
+<!-- <a href="https://heapanalytics.com/?utm_source=badge"><img style="width:108px;height:41px" src="//heapanalytics.com/img/badgeLight.png" alt="Heap | Mobile and Web Analytics" /></a> -->

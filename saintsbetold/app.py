@@ -5,6 +5,7 @@ from flask import Flask
 from blueprints import blueprints
 
 
+
 def create_app(environment=None):
     app = Flask(__name__)
 

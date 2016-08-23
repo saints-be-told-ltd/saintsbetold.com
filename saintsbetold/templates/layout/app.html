@@ -1,0 +1,31 @@
+{% import "macros/services.jinja2" as services with context %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description"
+              content="{% block meta_description %}Saints Be Told Ltd. is a marketing and advertising publishing company incorporated in the state of Michigan and operating in the city of Allegan.{% endblock %}">
+
+        <title>
+            {% block title %}{% endblock %} - {{ config['TITLE'] }}
+        </title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/saintsbetold.css') }}">
+    </head>
+    <body class="home">
+        {% include 'layout/header.html' %}
+        {% block main %}{% endblock %}
+        {% include 'layout/footer.html' %}
+
+        {% if config['ANALYTICS_GOOGLE'] %}
+            {{ services.google_analytics(config['ANALYTICS_GOOGLE'])|safe }}
+        {% endif %}
+        {% if config['ANALYTICS_HEAP'] %}
+            {{ services.heap_analytics(config['ANALYTICS_HEAP'])|safe }}
+        {% endif %}
+    </body>
+</html>
